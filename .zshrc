@@ -53,7 +53,17 @@ plugins=(git git-flow)
 
 # User configuration
 
-export PATH="/usr/local/heroku/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/andrewcodispoti/Library/Android/sdk/platform-tools"
+# PATH configuration
+export PATH="$PATH:/usr/local/heroku/bin"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:/usr/bin"
+export PATH="$PATH:/bin"
+export PATH="$PATH:/usr/sbin"
+export PATH="$PATH:/sbin"
+export PATH="$PATH:/Users/andrewcodispoti/Library/Android/sdk/platform-tools"
+export PATH="$PATH:/opt/X11/bin"
+export PATH="$PATH:/Library/Tex/texbin"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -65,7 +75,7 @@ source $ZSH/oh-my-zsh.sh
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
-   export EDITOR='mvim'
+   export EDITOR='nvim'
  fi
 
 # Compilation flags
@@ -84,9 +94,9 @@ alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Make sure to use macvim
-alias vim="mvim -v"
-alias vi="mvim -v"
-alias vimdiff="mvim -d -v"
+alias vim="nvim"
+alias vi="nvim"
+alias vimdiff="nvim -d -v"
 
 # folder changing aliases
 alias dev="cd ~/Documents/Programming"
@@ -100,7 +110,6 @@ alias csync="rsync -avzh  ssh --progress ~/Google\ Drive/School/2B/CS247/* acodi
 
 # Latex command
 alias latex="pdflatex -interaction=nonstopmode"
-export PATH="/Users/andrewcodispoti/Library/Android/sdk/platform-tools:/usr/local/heroku/bin:/Library/Tex/texbin:$PATH"
 
 # Start and stop a postgresql database
 alias postdbstart="pg_ctl start -D /usr/local/var/postgres9.5 -l logfile"
@@ -111,6 +120,8 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 alias re-source="source ~/.zshrc"
 
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
