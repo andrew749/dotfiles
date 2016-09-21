@@ -1,5 +1,5 @@
-# Path to your oh-my-zsh installation.
 export ZSH=/Users/andrewcodispoti/.oh-my-zsh
+# Path to your oh-my-zsh installation.
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -131,3 +131,19 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+function ff() {
+    grep -nrl "$*" .
+}
+
+function fl() {
+    grep -nr "$*" .
+}
+
+function ffi() {
+    grep -nirl "$*" .
+}
+
+function fli() {
+    grep -nir "$*" .
+}
