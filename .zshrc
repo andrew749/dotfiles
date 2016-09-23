@@ -123,7 +123,7 @@ alias re-source="source ~/.zshrc"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+export PYTHONPATH=
 
 if [ -z "$SSH_AUTH_SOCK" ] ; then
     eval `ssh-agent -s`
