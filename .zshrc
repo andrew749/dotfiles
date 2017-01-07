@@ -63,7 +63,7 @@ export PATH="$PATH:/sbin"
 export PATH="$PATH:/Users/andrewcodispoti/Library/Android/sdk/platform-tools"
 export PATH="$PATH:/opt/X11/bin"
 export PATH="$PATH:/Library/Tex/texbin"
-
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
