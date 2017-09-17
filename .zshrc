@@ -20,7 +20,7 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
-# Uncomment the following line to disable colors in ls.
+ #Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
@@ -51,6 +51,8 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git git-flow)
 
+DEFAULT_USER=whoami
+
 # User configuration
 
 # PATH configuration
@@ -64,7 +66,9 @@ export PATH="$PATH:/Users/andrewcodispoti/Library/Android/sdk/platform-tools"
 export PATH="$PATH:/opt/X11/bin"
 export PATH="$PATH:/Library/Tex/texbin"
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+ #export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,11 +106,23 @@ alias vimdiff="nvim -d -v"
 alias dev="cd ~/Documents/Programming"
 alias school="cd ~/Google\ Drive/School"
 alias 2b="cd ~/Google\ Drive/School/2B/"
+alias 3b="cd ~/Google\ Drive/School/3B/"
 
 # Commands for school server
 alias cssh="ssh -X acodispo@linux.student.cs.uwaterloo.ca"
-alias cscp="scp -r ~/Google\ Drive/School/2B/CS247 acodispo@linux.student.cs.uwaterloo.ca:~"
-alias csync="rsync -avzh  ssh --progress ~/Google\ Drive/School/2B/CS247/* acodispo@linux.student.cs.uwaterloo.ca:~/CS247"
+alias csshy="ssh -X -Y acodispo@linux.student.cs.uwaterloo.ca" # gui ssh
+alias csync="rsync -avz --progress \"$(pwd)\" acodispo@linux.student.cs.uwaterloo.ca:~"
+# assuming a synced environment
+function crun() {
+    ssh acodispo@linux.student.cs.uwaterloo.ca "cd ~/$1; '$@'"
+}
+
+alias ls="ls -F -h --color $@"
+function clangd() {
+    DIFF_FILE=$1
+    echo $DIFF_FILE
+    nvim -d <(echo "$(clang-format ${DIFF_FILE})") $DIFF_FILE
+}
 
 # Latex command
 alias latex="pdflatex -interaction=nonstopmode"
@@ -147,3 +163,12 @@ function ffi() {
 function fli() {
     grep -nir "$*" .
 }
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/andrewcodispoti/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/andrewcodispoti/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/andrewcodispoti/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/andrewcodispoti/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
